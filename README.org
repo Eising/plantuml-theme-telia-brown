@@ -1,0 +1,4 @@
+#+title: PlantUML theme telia-brown
+
+* Description
+This is a plantuml theme matching Telia's brown color scheme.

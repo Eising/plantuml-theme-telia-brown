@@ -1,0 +1,557 @@
+''
+''
+'' Author: Allan Eising
+'' Copyright (c) 2023 by Allan Eising
+'' Based on materia theme from Brett Schwarz.
+
+!$THEME = "telia-brown"
+
+
+!if %not(%variable_exists("$BGCOLOR"))
+!$BGCOLOR = "transparent"
+!endif
+
+skinparam backgroundColor $BGCOLOR
+skinparam useBetaStyle false
+
+''
+'' Colors taken from the css file of the BS theme
+''
+!$WHITE = "#FFF"
+!$GRAY = "#666"
+'CHANGEME'
+!$PRIMARY = "#ECDED4"
+
+!$SECONDARY = "#F3F3F8"
+!$SUCCESS = "#018842"
+!$INFO = "#0078cb"
+!$WARNING = "#ff9800"
+!$DANGER = "#e4175c"
+!$LIGHT = "#fff"
+!$DARK = "#1e1e20"
+!$ACCENT = "#5C524E"
+!$DARKBROWN = "#7F7F7F"
+
+'' *_LIGHT = tint (lighter) of the main color of 80%
+'' *_DARK = shade (darker) of the main color of 80%
+''
+!$FGCOLOR = $DARK
+!$PRIMARY_TEXT = $DARK
+!$SECONDARY_TEXT = $DARK
+!$PRIMARY_LIGHT = %lighten($PRIMARY, 20)
+!$PRIMARY_DARK = %darken($PRIMARY, 20)
+!$SECONDARY_LIGHT = %lighten($SECONDARY, 20)
+!$SECONDARY_DARK = %darken($SECONDARY, 20)
+!$INFO_LIGHT = %lighten($INFO, 20)
+!$INFO_DARK = %darken($INFO, 20)
+!$INFO_TEXT = $WHITE
+!$SUCCESS_LIGHT = %lighten($SUCCESS, 20)
+!$SUCCESS_DARK = %darken($SUCCESS, 20)
+!$SUCCESS_TEXT = $WHITE
+!$WARNING_LIGHT = %lighten($WARNING, 20)
+!$WARNING_DARK = %darken($WARNING, 20)
+!$WARNING_TEXT = $WHITE
+!$DANGER_DARK = %lighten($DANGER, 20)
+!$DANGER_LIGHT = %darken($DANGER, 20)
+!$DANGER_TEXT = $WHITE
+!$ACCENT_LIGHT = %lighten($ACCENT, 20)
+!$ACCENT_DARK = %darken($ACCENT, 20)
+
+!procedure $success($msg)
+  <font color=$SUCCESS><b>$msg
+!endprocedure
+
+!procedure $failure($msg)
+  <font color=$DANGER><b>$msg
+!endprocedure
+
+!procedure $warning($msg)
+  <font color=$WARNING><b>$msg
+!endprocedure
+
+!procedure $primary_scheme()
+	FontColor $PRIMARY_TEXT
+	BorderColor $DARKBROWN
+	BorderThickness 1
+	BackgroundColor $PRIMARY_LIGHT-$PRIMARY
+!endprocedure
+
+!procedure $structure_scheme()
+	node {
+		BackgroundColor $PRIMARY_LIGHT-$PRIMARY
+		LineColor $ACCENT
+		FontName "Telia Sans"
+		separator {
+			LineColor $ACCENT
+		}
+	}
+	arrow {
+			BackgroundColor $ACCENT
+			LineColor $ACCENT
+	}
+	highlight {
+			BackgroundColor $WARNING_LIGHT-$WARNING
+	}
+!endprocedure
+
+!procedure $gantt_scheme() {
+    FontName "Telia Sans"
+}
+!endprocedure
+''
+'' Global Default Values
+''
+skinparam defaultFontName       "Telia Sans"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             true
+skinparam roundcorner           8
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               10
+skinparam ArrowColor            $ACCENT
+skinparam stereotype {
+    CBackgroundColor $SECONDARY_LIGHT
+    CBorderColor $SECONDARY_DARK
+    ABackgroundColor $SUCCESS_LIGHT
+    ABorderColor $SUCCESS_DARK
+    IBackgroundColor $DANGER_LIGHT
+    IBorderColor $DANGER_DARK
+    EBackgroundColor $WARNING_LIGHT
+    EBorderColor $WARNING_DARK
+    NBackgroundColor $INFO_LIGHT
+    NBorderColor $INFO_DARK
+}
+skinparam title {
+	FontColor	                 $ACCENT
+	'BorderColor	                 $SECONDARY_DARK
+	FontSize	    	         20
+	'BorderRoundCorner            8
+	BorderThickness 	         0
+	BackgroundColor              $BGCOLOR
+}
+
+skinparam legend {
+	BackgroundColor $SECONDARY
+	BorderColor $SECONDARY_DARK
+	FontColor $DARK
+}
+
+!startsub swimlane
+skinparam swimlane {
+	BorderColor $ACCENT
+	BorderThickness 2
+	TitleBackgroundColor  $SECONDARY_LIGHT-$SECONDARY
+	TitleFontColor $PRIMARY
+}
+!endsub
+
+!startsub activity
+
+skinparam activity {
+	$primary_scheme()
+	BarColor $ACCENT
+	StartColor $INFO
+	EndColor $INFO
+	''
+	DiamondBackgroundColor $SECONDARY_LIGHT-$SECONDARY
+  	DiamondBorderColor $SECONDARY_DARK
+	DiamondFontColor $SECONDARY_TEXT
+}
+!endsub
+
+!startsub participant
+
+skinparam participant {
+	$primary_scheme()
+	ParticipantBorderThickness 2
+}
+!endsub
+
+!startsub actor
+
+skinparam actor {
+	BackgroundColor $PRIMARY_LIGHT-$PRIMARY
+	BorderColor $ACCENT
+	BorderThickness 2
+	FontColor $DARK
+}
+!endsub
+
+!startsub arrow
+
+skinparam arrow {
+	Thickness 3
+	Color $ACCENT
+	FontColor $FGCOLOR
+}
+!endsub
+
+!startsub sequence
+
+skinparam sequence {
+	BorderColor $PRIMARY
+	' For some reason sequence title font color does not pick up from global
+	TitleFontColor $PRIMARY
+	BackgroundColor transparent
+	StartColor $PRIMARY
+	EndColor $PRIMARY
+	''
+	BoxBackgroundColor $BGCOLOR
+	BoxBorderColor $GRAY
+	BoxFontColor $DARK
+	''
+	DelayFontColor $DARK
+	''
+	LifeLineBorderColor $DARK
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor $SECONDARY_LIGHT
+	''
+	GroupBorderColor $GRAY
+	GroupFontColor $DARK
+	GroupHeaderFontColor $DARK
+	GroupBackgroundColor $BGCOLOR
+	GroupBodyBackgroundColor $BGCOLOR
+	GroupHeaderBackgroundColor $BGCOLOR
+	''
+	DividerBackgroundColor $WHITE-$LIGHT
+    DividerBorderColor $GRAY
+    DividerBorderThickness 2
+    DividerFontColor $DARK
+	''
+	ReferenceBackgroundColor $BGCOLOR
+	ReferenceBorderColor $GRAY
+	ReferenceFontColor $DARK
+	ReferenceHeaderFontColor $INFO
+	''
+	StereotypeFontColor $PRIMARY_TEXT
+}
+!endsub
+
+!startsub partition
+
+skinparam partition {
+	BorderColor $DARK
+	FontColor $DARK
+	BackgroundColor transparent
+}
+!endsub
+
+!startsub collections
+
+skinparam collections {
+	$primary_scheme()
+}
+!endsub
+
+!startsub control
+
+skinparam control {
+	$primary_scheme()
+	FontColor $LIGHT
+}
+!endsub
+
+!startsub entity
+
+skinparam entity {
+	$primary_scheme()
+	FontColor $LIGHT
+}
+!endsub
+
+!startsub boundary
+
+skinparam boundary {
+	$primary_scheme()
+	FontColor $LIGHT
+}
+!endsub
+
+!startsub agent
+
+skinparam agent {
+	BackgroundColor #orange
+	BorderColor #999999
+	FontColor #333333
+}
+!endsub
+
+!startsub note
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor $INFO_LIGHT-$INFO
+	BorderColor $INFO
+	FontColor $WHITE
+}
+!endsub
+
+!startsub artifact
+
+skinparam artifact {
+	BackgroundColor $WHITE-$LIGHT
+	BorderColor $GRAY
+	FontColor $GRAY
+}
+!endsub
+
+!startsub component
+
+skinparam component {
+	$primary_scheme()
+}
+!endsub
+
+!startsub interface
+
+skinparam interface {
+	BackgroundColor  $DANGER_LIGHT
+	BorderColor  $DANGER
+	FontColor $DARK
+}
+!endsub
+
+!startsub storage
+
+skinparam storage {
+	BackgroundColor $WARNING_LIGHT-$WARNING
+  	BorderColor $WARNING
+	FontColor $WARNING_TEXT
+}
+!endsub
+
+!startsub node
+
+skinparam node {
+	BackgroundColor $SECONDARY_LIGHT-$SECONDARY
+	BorderColor $DARK
+    BorderThickness 1
+	FontColor $DARK
+}
+!endsub
+
+!startsub cloud
+
+skinparam cloud {
+    $primary_scheme()
+	FontColor $DARK
+}
+!endsub
+
+!startsub database
+
+skinparam database {
+	$primary_scheme()
+	FontColor $DARK
+}
+!endsub
+
+!startsub class
+
+skinparam class {
+	'$primary_scheme()
+	BackgroundColor $SECONDARY_LIGHT-$SECONDARY
+	HeaderBackgroundColor $PRIMARY-$PRIMARY_DARK
+	StereotypeFontColor $DARK
+	BorderThickness 1
+	AttributeFontColor $DARK
+	AttributeFontSize 11
+}
+!endsub
+
+!startsub object
+
+skinparam object {
+	$primary_scheme()
+	StereotypeFontColor $DARK
+	BorderThickness 1
+	AttributeFontColor $SECONDARY_TEXT
+	AttributeFontSize 11
+}
+!endsub
+
+!startsub usecase
+
+skinparam usecase {
+	$primary_scheme()
+	BorderThickness 2
+	StereotypeFontColor $PRIMARY
+}
+!endsub
+
+!startsub rectangle
+
+skinparam rectangle {
+	FontColor $DARK
+	BackgroundColor $SECONDARY_LIGHT-$SECONDARY
+	BorderThickness 2
+	StereotypeFontColor $PRIMARY
+}
+!endsub
+
+!startsub package
+
+skinparam package {
+	$primary_scheme()
+	BackgroundColor $SECONDARY_LIGHT-$SECONDARY
+	BorderThickness 2
+}
+!endsub
+
+!startsub folder
+
+skinparam folder {
+	BackgroundColor $WHITE-$SECONDARY_LIGHT
+  	BorderColor $WARNING
+	FontColor $WARNING
+	BorderThickness 2
+}
+!endsub
+
+!startsub frame
+
+skinparam frame {
+	BackgroundColor $WHITE-$SECONDARY_LIGHT
+  	BorderColor $INFO
+	FontColor $INFO
+	BorderThickness 2
+}
+!endsub
+
+!startsub state
+
+skinparam state {
+	$primary_scheme()
+	BorderColor $PRIMARY_DARK
+	BarColor $ACCENT
+	StartColor $INFO
+	EndColor $INFO
+	AttributeFontColor $DARK
+	AttributeFontSize 11
+
+}
+
+skinparam state<<entryPoint>> {
+  AttributeFontColor $DARK
+}
+
+
+skinparam state<<exitPoint>> {
+  AttributeFontColor $DARK
+}
+
+
+skinparam state<<choice>> {
+  AttributeFontColor $DARK
+}
+!endsub
+
+!startsub queue
+
+skinparam queue {
+	$primary_scheme()
+}
+!endsub
+
+!startsub card
+
+skinparam card {
+	BackgroundColor $INFO_LIGHT-$INFO
+	BorderColor $INFO
+	FontColor $INFO_TEXT
+}
+!endsub
+
+!startsub file
+
+skinparam file {
+	BackgroundColor $SECONDARY_LIGHT-$SECONDARY
+	BorderColor $GRAY
+	FontColor $GRAY
+
+}
+!endsub
+
+!startsub stack
+
+skinparam stack {
+	$primary_scheme()
+}
+!endsub
+
+!startsub person
+skinparam person {
+    $primary_scheme()
+}
+!endsub
+
+!startsub json
+	<style>
+	jsonDiagram {
+	    $structure_scheme()
+	}
+	yamlDiagram {
+	    $structure_scheme()
+	}
+	</style>
+!endsub
+
+!startsub gantt
+    <style>
+        ganttDiagram {
+            root {
+                FontName "Telia Sans"
+            }
+            task {
+                $primary_scheme()
+                    LineColor $PRIMARY_BG
+                Padding 6
+            }
+            note {
+                    FontColor $INFO_DARK
+                    LineColor $INFO_DARK
+                BackGroundColor $INFO_DARK
+            }
+            separator {
+                    LineColor $SECONDARY_BG
+                BackGroundColor $secondary_scheme()
+                FontColor $SECONDARY_TEXT
+            }
+            milestone {
+                    FontColor $PRIMARY_TEXT
+                    FontSize 16
+                    FontStyle italic
+                    BackGroundColor $PRIMARY_LIGHT
+                    LineColor $SECONDARY_DARK
+            }
+            timeline {
+                FontName "Telia Sans"
+                FontSize 12
+                BackgroundColor $SECONDARY_BG
+                FontColor $SECONDARY_TEXT
+            }
+            closed {
+                    BackgroundColor $WARNING_DARK
+                    FontColor $WARNING_TEXT
+            }
+        }
+}
+    </style>
+!endsub
+
+!startsub process
+<style>
+  process {
+    $primary_scheme()
+  }
+</style>
+!endsub
+
+!startsub action
+<style>
+  action {
+    $primary_scheme()
+  }
+</style>
+!endsub
