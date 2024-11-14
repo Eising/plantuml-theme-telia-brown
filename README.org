@@ -2,3 +2,46 @@
 
 * Description
 This is a plantuml theme matching Telia's brown color scheme.
+
+* How to use
+
+This theme requires the telia-internal font "Telia Sans". If you are an employee of Telia Company, you should have this font already.
+
+You should be able to load the theme directly from this repository.
+
+#+begin_example
+@startuml
+!theme telia-brown from https://raw.githubusercontent.com/Eising/plantuml-theme-telia-brown/main/telia-brown/puml-theme-telia-brown.puml
+@enduml
+#+end_example
+
+The theme supports setting a background color with =skinparam BackgroundColor=, for example a transparent background can be set with =skinparam BackgroundColor transparent=.
+
+Note that some of the more obscure diagram formats are not handled correctly. They may be updated once I have a use case for them.
+
+* Examples
+#+CAPTION: Activity Diagram
+[[./examples/rendered/activity-ex.svg]]
+
+#+CAPTION: Class Diagram
+[[./examples/rendered/class-ex.svg]]
+
+#+CAPTION: Object Diagram
+[[./examples/rendered/object-ex.svg]]
+[[./examples/rendered/object-ex2.svg]]
+
+#+CAPTION: Component Diagram
+[[./examples/rendered/component-ex.svg]]
+
+#+CAPTION: State diagram
+[[./examples/rendered/state-ex2.svg]]
+
+#+CAPTION: Swimlane Diagram
+[[./examples/rendered/swimlane-ex.svg]]
+
+
+* Attribution and License
+
+Theme structure, most building blocks as well as example diagrams were taken from the public plantuml theme collection [[https://github.com/bschwarz/puml-themes][puml-themes by Brett Schwarz]] licensed under the MIT license.
+
+This repository is also licensed under the MIT license.
